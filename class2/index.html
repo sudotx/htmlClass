@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link href="styles.css" rel="stylesheet" />
+	<title>Image Gallery</title>
+</head>
+
+<body>
+	<div id="wrapper">
+		<header>
+			<div id="page-banner">
+				<h1 class="title">Image Gallery</h1>
+			</div>
+		</header>
+		<div id="image-gallery">
+			<h2 class="title">Featured Images</h2>
+			<div class="gallery-grid">
+			</div>
+		</div>
+	</div>
+	<script>
+		const galleryGrid = document.querySelector(".gallery-grid");
+
+		// Array of image URLs
+		const imageUrls = [
+			"https://picsum.photos/id/1/200/300",
+			"https://picsum.photos/200/300?grayscale",
+			"https://picsum.photos/id/237/200/300",
+			"https://picsum.photos/id/237/204/305",
+			"https://picsum.photos/seed/picsum/200/300",
+			"https://picsum.photos/200/310?grayscale",
+		];
+
+		const imageDescriptions = ["Description 1", "Description 2", "Description 3", "Description 4", "Description 5", "Description 6"];
+
+		// Add initial images to the gallery
+		for (let i = 0; i < imageUrls.length; i++) {
+			const url = imageUrls[i];
+			const desc = imageDescriptions[i];
+
+			const item = document.createElement("div");
+			item.className = "gallery-item";
+
+			const img = document.createElement("img");
+			img.src = url;
+
+			const p = document.createElement("p");
+			p.className = "image-description";
+			p.textContent = desc;
+
+			item.appendChild(img);
+			item.appendChild(p);
+
+			galleryGrid.appendChild(item);
+		}
+
+		document.addEventListener("click", function (e) {
+			if (e.target.tagName === "IMG") {
+				window.alert("Image clicked");
+			} else if (e.target.tagName === "H1" || e.target.tagName === "H2") {
+				window.alert("Heading clicked");
+			} else if (e.target.id === "wrapper") {
+				window.alert("Wrapper area clicked");
+			} else if (e.target.id === "page-banner") {
+				window.alert("Page banner clicked");
+			} else {
+				window.location.reload();
+			}
+		});
+	</script>
+</body>
+
+</html>
