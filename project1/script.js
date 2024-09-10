@@ -4,14 +4,15 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function renderTasks() {
   taskList.innerHTML = "";
-  tasks.forEach((task, index) => {
-    const li = document.createElement("p");
-    li.innerHTML = `
-      <span >${task.name}</span>
-      <button onclick="deleteTask(${index})">Delete</button>
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    const px = document.createElement("p");
+    px.innerHTML = `
+      <span>${task.name}</span>
+      <button onclick="deleteTask(${i})">Delete</button>
     `;
-    taskList.appendChild(li);
-  });
+    taskList.appendChild(px);
+  }
 }
 
 document.getElementById("addTask").addEventListener("click", () => {
